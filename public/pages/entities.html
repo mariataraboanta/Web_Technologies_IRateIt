@@ -1,0 +1,100 @@
+<div class="page-background">
+  <div
+    style="
+      display: flex;
+      justify-content: flex-end;
+      margin-bottom: 1rem;
+      position: relative;
+    "
+  >
+    <a href="#" class="entity-button" id="addEntityButton">+ Add Entity</a>
+  </div>
+  <div class="page-content">
+    <div class="container" id="entitiesContainer"></div>
+  </div>
+</div>
+
+<template id="entity-template">
+  {{#each entities}}
+  <div class="entity-wrapper">
+    <div class="entity-card" role="button" tabindex="0" data-entity-id="{{id}}">
+      <div class="entity-image-container">
+        <img
+          src="{{#if image_path}}{{image_path}}{{else}}/IRI_Ballerina_Cappuccina/app/uploads/images.png{{/if}}"
+          alt="{{name}}"
+          onerror="this.src='/IRI_Ballerina_Cappuccina/app/uploads/images.png'"
+          class="entity-image"
+        />
+      </div>
+      <div class="entity-content">
+        <div class="entity-header">
+          <h4 class="entity-name">{{name}}</h4>
+        </div>
+        <div class="entity-meta">
+          <span class="category-name"><strong>{{category_name}}</strong></span>
+        </div>
+        <p class="entity-description">{{description}}</p>
+        <div class="entity-rating">
+          <div class="rating">{{{stars rating}}}</div>
+          <span class="rating-count">({{review_count}} recenzii)</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  {{/each}}
+</template>
+<div id="entityModal" class="modal hidden">
+  <div class="modal-content">
+    <span class="close-button">&times;</span>
+    <form id="addEntityForm">
+      <input
+        type="text"
+        id="entityName"
+        name="name"
+        placeholder="Entity name"
+        required
+      />
+      <textarea
+        id="entityDescription"
+        name="description"
+        placeholder="Description"
+        required
+      ></textarea>
+
+      <div class="form-group">
+        <label for="entityImage">Image</label>
+        <div class="upload-container">
+          <input
+            type="file"
+            id="entityImage"
+            name="image"
+            accept="image/*"
+            style="display: none"
+          />
+
+          <div class="image-preview-area" id="dropArea">
+            <div class="upload-placeholder" id="uploadPlaceholder">
+              <p>Drag & drop image here</p>
+              <p>or</p>
+              <label for="entityImage" class="upload-btn">Browse Files</label>
+              <div class="file-info">JPG, PNG or GIF, max 5MB</div>
+            </div>
+
+            <div id="imagePreview" style="display: none">
+              <img src="" alt="Preview" id="previewImg" />
+              <div class="image-actions">
+                <label for="entityImage" class="btn-change-image">Change</label>
+                <button type="button" class="btn-remove-image" id="removeImage">
+                  Remove
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <button type="submit">Submit</button>
+      <p id="customError" class="error-message"></p>
+    </form>
+  </div>
+</div>

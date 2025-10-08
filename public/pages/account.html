@@ -1,0 +1,105 @@
+<div class="main-container">
+  <div class="content-card">
+    <div class="action-buttons">
+      <button id="profileBtn" class="action-btn">Profile</button>
+      <button id="reviewsBtn" class="action-btn">Reviews</button>
+      <a
+        class="action-btn"
+        href="/IRI_Ballerina_Cappuccina/api/rss-rankings?type=most_detestable"
+        target="_blank"
+        >RSS Most Detestable</a
+      >
+      <a
+        class="action-btn"
+        href="/IRI_Ballerina_Cappuccina/api/rss-rankings?type=least_detestable"
+        target="_blank"
+        >RSS Least Detestable</a
+      >
+    </div>
+
+    <div id="profileSection" class="profile-section active">
+      <h2>Profile information</h2>
+      <div class="profile-content">
+        <div class="profile-picture-section">
+          <div class="profile-picture-container">
+            <img
+              id="profilePicture"
+              src="/IRI_Ballerina_Cappuccina/app/uploads/images.png"
+              alt="Poza de profil"
+              class="profile-picture"
+            />
+          </div>
+          <input
+            type="file"
+            id="profilePictureInput"
+            accept="image/*"
+            style="display: none"
+          />
+          <div class="profile-picture-buttons">
+            <button id="changeProfilePictureBtn" class="change-picture-btn">
+              Change picture
+            </button>
+            <button
+              id="removeProfilePictureBtn"
+              class="remove-picture-btn"
+              style="display: none"
+            >
+              Delete picture
+            </button>
+          </div>
+        </div>
+        <div class="profile-info">
+          <div class="profile-info-header">
+            <div class="profile-details">
+              <div class="info-item">
+                <span class="info-label">Name:</span>
+                <span id="userName">Loading...</span>
+              </div>
+              <div class="info-item">
+                <span class="info-label">Email:</span>
+                <span id="userEmail">Loading...</span>
+              </div>
+              <div class="info-item">
+                <span class="info-label">Member since:</span>
+                <span id="userJoined">Loading...</span>
+              </div>
+            </div>
+            <button id="editProfileBtn" class="action-btn">
+              Edit profile
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="reviewsSection" class="reviews-section">
+      <h2>My reviews</h2>
+      <div id="reviewsList">Loading reviews...</div>
+    </div>
+  </div>
+</div>
+
+<template id="review-template">
+  {{#each reviews}}
+  <div class="review-card">
+    <div class="review-header">
+      <h3>Recenzie de la {{user}} - {{formatDate created_at}}</h3>
+    </div>
+    <button
+      class="delete-review-btn"
+      data-review-id="{{id}}"
+      onclick="deleteReview('{{id}}')"
+    >
+      Delete
+    </button>
+
+    {{#each traits}}
+    <div class="review-trait">
+      <h4>{{entity_name}} - {{name}}</h4>
+      <div class="rating">{{{stars rating}}}</div>
+      <div class="review-content">{{comment}}</div>
+    </div>
+    {{/each}}
+  </div>
+  {{/each}}
+</template>

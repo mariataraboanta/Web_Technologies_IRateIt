@@ -1,0 +1,137 @@
+.login-btn {
+    width: 100%;
+    padding: 10px;
+    background-color: #635858;
+    color: #d9d9d9;
+    border: none;
+    border-radius: 6px;
+    font-size: 15px;
+    cursor: pointer;
+    margin-bottom: 10px;
+  }
+  
+  .login-btn:hover {
+    background-color: #4a4242;
+  }
+  
+  .register {
+    color: #635858;
+    margin-left: 20px;
+  }
+  
+  .register a {
+    color: #635858;
+  }
+  
+  .register a:hover {
+    color: #4a4242;
+  }
+  
+  .custom-checkbox input[type="checkbox"] {
+    display: none;
+  }
+  
+  .custom-checkbox .checkmark {
+    height: 16px;
+    width: 16px;
+    border: 2px solid #999;
+    display: inline-block;
+    border-radius: 3px;
+    position: relative;
+    margin-right: 8px;
+    vertical-align: middle;
+    cursor: pointer;
+  }
+  
+  .custom-checkbox input[type="checkbox"]:checked + .checkmark {
+    background-color: #635858;
+    border-color: #635858;
+  }
+  
+  .custom-checkbox .checkmark::after {
+    content: "";
+    position: absolute;
+    display: none;
+    left: 4px;
+    top: 0px;
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+  }
+  
+  .custom-checkbox input[type="checkbox"]:checked + .checkmark::after {
+    display: block;
+  }
+
+  .overlay {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 90vh;
+    background-color: #b5c4bb;
+  }
+  
+  .login-box {
+    background: #d9d9d9;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px #635858;
+    position: relative;
+    width: 400px;
+  }
+  
+  .close-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: #635858;
+    color: #d9d9d9;
+    border: none;
+    font-size: 18px;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 25px;
+    height: 25px;
+  }
+  
+  h2 {
+    margin-top: 0;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  
+  label {
+    font-size: 14px;
+    margin-bottom: 4px;
+    display: block;
+  }
+  
+  .input-icon {
+    position: relative;
+    margin-bottom: 15px;
+  }
+  
+  .input-icon input {
+    width: 100%;
+    padding: 8px 0;
+    border: none;
+    border-bottom: 2px solid #999;
+    background: transparent;
+    outline: none;
+    font-size: 14px;
+  }
+  
+  .input-icon .icon {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #666;
+  }
+  
+  .input-icon input:focus {
+    border-bottom: 3px solid #728078;
+  }
+  

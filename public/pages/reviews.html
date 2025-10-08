@@ -1,0 +1,263 @@
+<div class="page-background">
+  <div class="page-content">
+    <div class="container">
+      <!-- Header and Add Review Button -->
+      <div
+        style="
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          margin-bottom: 1rem;
+        "
+      >
+        <h2 class="section-title"></h2>
+        <button class="add-review-btn" id="addReviewButton">
+          + Add review
+        </button>
+      </div>
+
+      <!-- Rating and Count -->
+      <div style="margin-bottom: 15px">
+        <div class="rating-stars" style="font-size: 20px"></div>
+        <div class="entity-category" style="color: #4a5568"></div>
+      </div>
+      <div
+        id="traitAverages"
+        class="trait-averages"
+        style="margin: 1rem 0"
+      ></div>
+      <!-- Review List Container -->
+      <div id="reviewsContainer" class="review-list"></div>
+    </div>
+  </div>
+</div>
+
+<template id="review-template">
+  {{#each reviews}}
+  <div class="review-card">
+    {{{profilePicture profile_picture user}}}
+
+    <div class="review-traits">
+      {{#each traits}}
+      <div class="review-trait">
+        <strong>{{name}}</strong>
+        <span class="trait-rating-stars">{{stars rating}}</span>
+        <p class="trait-comment">{{comment}}</p>
+      </div>
+      {{/each}}
+    </div>
+    {{#if (hasImages images)}}
+    <div class="review-images-section">
+      <h4 class="images-title">Imagini:</h4>
+      {{{reviewImages images}}}
+    </div>
+    {{/if}}
+  </div>
+  {{/each}}
+</template>
+
+<!-- Add Review Modal -->
+<div id="reviewModal" class="modal hidden">
+  <div class="modal-content">
+    <span class="close-button">&times;</span>
+    <form id="addReviewForm">
+      <input
+        type="text"
+        id="reviewUserName"
+        placeholder="Numele tău"
+        required
+      />
+      <div id="traits-container"></div>
+      <div class="form-group">
+        <label for="reviewImages">Add pictures</label>
+        <div class="upload-container">
+          <input
+            type="file"
+            id="reviewImages"
+            name="images[]"
+            accept="image/*"
+            multiple
+            style="display: none"
+          />
+
+          <div class="image-preview-area" id="dropArea">
+            <div class="upload-placeholder" id="uploadPlaceholder">
+              <p>Drag & drop image here</p>
+              <label for="reviewImages" class="upload-btn" id="browseButton"
+                >Choose files</label
+              >
+              <div class="file-info">JPG, PNG or GIF, max 5MB</div>
+            </div>
+
+            <div id="imagesPreview" style="display: none">
+              <div
+                id="previewImagesContainer"
+                class="preview-images-grid"
+              ></div>
+              <div class="image-actions">
+                <label for="reviewImages" class="btn-change-image"
+                  >Add more</label
+                >
+                <button
+                  type="button"
+                  class="btn-remove-image"
+                  id="removeAllImages"
+                >
+                  Delete all
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <button type="submit" class="add-review-btn">Submit</button>
+      <p id="customError1" class="error-message"></p>
+    </form>
+  </div>
+
+  <template id="traits-template">
+    {{#each traits}}
+    <div class="trait-rating" data-trait-id="{{id}}">
+      <h4 class="trait-name">{{name}}</h4>
+      <select class="trait-select" required>
+        <option value="" disabled selected>Choose rating</option>
+        <option value="5">5 - Excelent</option>
+        <option value="4">4 - Very good</option>
+        <option value="3">3 - Good</option>
+        <option value="2">2 - Bad</option>
+        <option value="1">1 - Very bad</option>
+      </select>
+      <textarea
+        placeholder="Comentariu despre {{name}}"
+        rows="2"
+        class="trait-comment"
+      ></textarea>
+    </div>
+    {{/each}}
+  </template>
+</div>
+
+<!-- Q&A Section to be added after the reviews container -->
+<div class="page-content">
+  <div class="container">
+    <h2 class="section-title">QA Section</h2>
+
+    <!-- Ask Question Button -->
+    <div style="display: flex; justify-content: flex-end; margin-bottom: 1rem">
+      <button class="add-question-btn" id="askQuestionButton">
+        + Ask a question
+      </button>
+    </div>
+
+    <!-- Q&A List Container -->
+    <div id="qaContainer" class="qa-list">
+      <!-- Questions will be loaded here -->
+    </div>
+  </div>
+</div>
+
+<!-- Question Template -->
+<template id="question-template">
+  {{#each questions}}
+  <div class="qa-card">
+    <div class="question-section">
+      <div class="question-header">
+        <h3 class="question-user">{{user}}</h3>
+        <span class="question-date">{{formatDate date}}</span>
+      </div>
+      <p class="question-text">{{questionText}}</p>
+
+      <div class="question-actions">
+        <button class="answer-btn" data-question-id="{{id}}">Answer</button>
+      </div>
+    </div>
+
+    {{#if showAnswers}}
+    <div class="answers-section">
+      {{#each answers}}
+      <div class="answer-item">
+        <div class="answer-header">
+          <span class="answer-user">{{user}}</span>
+          <span class="answer-date">{{formatDate date}}</span>
+        </div>
+        <p class="answer-text">{{answerText}}</p>
+
+        <div class="answer-votes">
+          <button class="vote-btn upvote" data-answer-id="{{id}}">
+            <span class="vote-icon">👍</span>
+            <span class="vote-count">{{upvotes}}</span>
+          </button>
+          <button class="vote-btn downvote" data-answer-id="{{id}}">
+            <span class="vote-icon">👎</span>
+            <span class="vote-count">{{downvotes}}</span>
+          </button>
+        </div>
+      </div>
+      {{/each}}
+    </div>
+    {{/if}}
+  </div>
+  {{/each}}
+</template>
+
+<!-- Ask Question Modal -->
+<div id="questionModal" class="modal hidden">
+  <div class="modal-content">
+    <span class="close-button">&times;</span>
+    <h3>Ask a question</h3>
+    <form id="askQuestionForm">
+      <div class="form-group">
+        <input
+          type="text"
+          id="questionUserName"
+          placeholder="Numele tău"
+          required
+        />
+      </div>
+      <div class="form-group">
+        <textarea
+          id="questionText"
+          placeholder="Întrebarea ta..."
+          rows="4"
+          required
+        ></textarea>
+      </div>
+      <button type="submit" class="submit-question-btn">
+        Submit
+      </button>
+      <p id="customError3" class="error-message"></p>
+    </form>
+  </div>
+</div>
+
+<!-- Answer Question Modal -->
+<div id="answerModal" class="modal hidden">
+  <div class="modal-content">
+    <span class="close-button">&times;</span>
+    <h3>Answer the question</h3>
+    <div class="question-display">
+      <p id="displayedQuestion"></p>
+    </div>
+    <form id="submitAnswerForm">
+      <input type="hidden" id="questionId" />
+      <div class="form-group">
+        <input
+          type="text"
+          id="answerUserName"
+          placeholder="Numele tău"
+          required
+        />
+      </div>
+      <div class="form-group">
+        <textarea
+          id="answerText"
+          placeholder="Răspunsul tău..."
+          rows="4"
+          required
+        ></textarea>
+      </div>
+      <button type="submit" class="submit-answer-btn">Submit</button>
+      <p id="customError4" class="error-message"></p>
+    </form>
+  </div>
+</div>

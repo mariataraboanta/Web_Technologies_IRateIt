@@ -1,0 +1,179 @@
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  background: white;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+  color: #333;
+  margin-bottom: 20px;
+  border-bottom: 2px solid #007bff;
+  padding-bottom: 10px;
+}
+
+.controls {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.export-section {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  margin-left: auto;
+}
+
+input,
+select,
+button {
+  padding: 8px 12px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+input[type="text"] {
+  width: 250px;
+}
+
+button {
+  background: #007bff;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #0056b3;
+}
+
+.btn-success {
+  background: #28a745;
+}
+
+.btn-success:hover {
+  background: #1e7e34;
+}
+
+.btn-danger {
+  background: #dc3545;
+}
+
+.btn-danger:hover {
+  background: #c82333;
+}
+
+.btn-export {
+  background: #17a2b8;
+}
+
+.btn-export:hover {
+  background: #138496;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+th,
+td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+th {
+  background: #f8f9fa;
+  font-weight: bold;
+}
+
+tr:hover {
+  background: #f8f9fa;
+}
+
+.traits-container {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.trait-item {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 5px;
+}
+
+.trait-name {
+  font-weight: bold;
+}
+
+.trait-rating {
+  color: #ffc107;
+  font-size: 14px;
+}
+
+.trait-comment {
+  width: 100%;
+  margin: 5px 0 0 0;
+  font-size: 13px;
+  color: #555;
+}
+
+.actions {
+  display: flex;
+  gap: 5px;
+}
+
+.btn-sm {
+  padding: 4px 8px;
+  font-size: 12px;
+}
+
+#entityFilter {
+  padding: 8px 12px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 14px;
+  min-width: 200px;
+}
+
+@media (max-width: 768px) {
+  #entityFilter {
+    width: 100%;
+  }
+
+  .controls {
+    flex-direction: column;
+  }
+
+  .export-section {
+    margin-left: 0;
+  }
+
+  input[type="text"] {
+    width: 100%;
+  }
+
+  table {
+    font-size: 12px;
+  }
+
+  th,
+  td {
+    padding: 8px;
+  }
+
+  .trait-item {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}

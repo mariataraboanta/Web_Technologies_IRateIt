@@ -1,0 +1,63 @@
+<div class="categories-section">
+  <div class="categories-header">
+    <h1>Categories</h1>
+    <button id="addCategoryButton">
+      <span class="category-button">+ Add Category</span>
+    </button>
+  </div>
+
+  <div class="categories" id="categoriesContainer">
+    <div class="loading">Loading categories...</div>
+  </div>
+</div>
+
+<!-- template pentru categorii -->
+<template id="category-template">
+  {{#each categories}}
+  <div class="category-card">
+    <a
+      href="/IRI_Ballerina_Cappuccina/public/entities/{{name}}"
+      class="category-button"
+      data-category-id="{{id}}"
+      >{{name}}</a
+    >
+  </div>
+  {{/each}}
+</template>
+
+<!-- modal pentru categorii -->
+<div id="categoryModal" class="modal hidden">
+  <div class="modal-content">
+    <button class="close-button">&times;</button>
+    <h2>Add a category and traits to review</h2>
+    <form id="addCategoryForm">
+      <h3>Category Name</h3>
+      <input
+        type="text"
+        id="categoryName"
+        name="name"
+        placeholder="Category name"
+        required
+      />
+
+      <h3>Traits to evaluate</h3>
+      <div id="traitsContainer">
+        <div class="trait-group">
+          <input
+            type="text"
+            name="traits[]"
+            placeholder="Ex: Quality"
+            required
+          />
+          <button type="button" onclick="removeTrait(this)">✖</button>
+        </div>
+      </div>
+
+      <button type="button" class="add-trait-btn" onclick="addTrait()">
+        + Add Trait
+      </button>
+      <button type="submit">Save category</button>
+      <p id="customError" class="error-message"></p>
+    </form>
+  </div>
+</div>

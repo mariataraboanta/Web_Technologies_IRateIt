@@ -1,0 +1,91 @@
+<div class="container">
+  <h1>Categories Manager</h1>
+
+  <div class="controls">
+    <input type="text" placeholder="Search category..." id="search" />
+
+    <div class="filter-section">
+      <label for="statusFilter">Filter by status:</label>
+      <select id="statusFilter" onchange="filterByStatus(this.value)">
+        <option value="all">All</option>
+        <option value="pending">Pending</option>
+        <option value="approved">Approved</option>
+        <option value="rejected">Rejected</option>
+      </select>
+    </div>
+
+    <div class="import-section">
+      <input
+        type="file"
+        id="importFile"
+        accept=".csv,.json"
+        style="display: none"
+        onchange="handleFileSelect(event)"
+      />
+      <button
+        class="btn-import"
+        onclick="document.getElementById('importFile').click()"
+      >
+        Import
+      </button>
+    </div>
+
+    <div class="export-section">
+      <select id="exportFormat">
+        <option value="csv">CSV</option>
+        <option value="json">JSON</option>
+        <option value="pdf">PDF</option>
+      </select>
+      <button class="btn-export" onclick="exportCategories()">Export</button>
+    </div>
+  </div>
+
+  <table id="categoriesTable">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Status</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody id="categoriesTableBody">
+      <tr>
+        <td colspan="5" style="text-align: center; padding: 20px">
+          Loading categories...
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- template pentru lista de categorii -->
+<template id="categories-template">
+  {{#if categories.length}}
+    {{#each categories}}
+      <tr data-category-id="{{id}}">
+        <td>{{id}}</td>
+        <td>{{name}}</td>
+        <td>
+          <span class="status-badge status-{{status}}">
+            {{getStatusText status}}
+          </span>
+        </td>
+        <td>
+          {{{getActionButtons this}}}
+        </td>
+      </tr>
+    {{/each}}
+  {{else}}
+    <tr>
+      <td colspan="5" style="text-align: center; padding: 20px;">No categories found</td>
+    </tr>
+  {{/if}}
+</template>
+
+<template id="error-template">
+  <tr>
+    <td colspan="6" style="text-align: center; padding: 20px; color: red;">{{message}}</td>
+  </tr>
+</template>
+

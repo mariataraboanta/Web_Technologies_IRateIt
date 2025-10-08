@@ -1,0 +1,82 @@
+<div class="container">
+  <h1>Entities Manager</h1>
+
+  <div class="controls">
+    <input type="text" placeholder="Search entities..." id="search" />
+
+    <select id="categoryFilter">
+      <option value="">All categories</option>
+    </select>
+
+    <select id="statusFilter">
+      <option value="">All statuses</option>
+      <option value="pending">Pending</option>
+      <option value="approved">Approved</option>
+      <option value="rejected">Rejected</option>
+    </select>
+
+    <div class="export-section">
+      <select id="exportFormat">
+        <option value="csv">CSV</option>
+        <option value="json">JSON</option>
+        <option value="pdf">PDF</option>
+      </select>
+      <button class="btn-export" onclick="exportEntities()">Export</button>
+    </div>
+  </div>
+
+  <table id="entitiesTable">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Status</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody id="entitiesTableBody">
+      <tr>
+        <td colspan="5" style="text-align: center; padding: 20px">
+          Loading entities...
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- template entitati -->
+<template id="entities-template">
+  {{#each entities}}
+    <tr data-entity-id="{{id}}">
+      <td>{{id}}</td>
+      <td>{{name}}</td>
+      <td class="category-description">{{#if description}}{{description}}{{else}}-{{/if}}</td>
+      <td>
+        <span class="status-badge status-{{status}}">
+          {{getStatusText status}}
+        </span>
+      </td>
+      <td>
+        {{#if_eq status "pending"}}
+          <button class="btn-sm btn-success approve-entity-btn" data-id="{{id}}">Approve</button>
+          <button class="btn-sm btn-warning reject-entity-btn" data-id="{{id}}">Reject</button>
+        {{/if_eq}}
+        
+        {{#if_eq status "approved"}}
+          <button class="btn-sm btn-warning reject-entity-btn" data-id="{{id}}">Reject</button>
+        {{/if_eq}}
+        
+        {{#if_eq status "rejected"}}
+          <button class="btn-sm btn-success approve-entity-btn" data-id="{{id}}">Approve</button>
+        {{/if_eq}}
+        
+        <button class="btn-sm btn-danger delete-entity-btn" data-id="{{id}}">Delete</button>
+      </td>
+    </tr>
+  {{else}}
+    <tr>
+      <td colspan="5" style="text-align: center; padding: 20px">No entities found</td>
+    </tr>
+  {{/each}}
+</template>

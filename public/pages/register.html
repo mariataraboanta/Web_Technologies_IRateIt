@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Register</title>
+    <link rel="stylesheet" href="../public/css/style.css" />
+</head>
+
+<body>
+    <div class="overlay">
+        <div class="login-box">
+            <button class="close-btn">&times;</button>
+            <h2>Register</h2>
+
+            <form id="registerForm">
+                <label for="username">Username</label>
+                <div class="input-icon">
+                    <input type="text" id="username" name="username" required />
+                    <span class="error-message" id="usernameError"></span>
+                </div>
+
+                <label for="email">Email</label>
+                <div class="input-icon">
+                    <input type="email" id="email" name="email" required />
+                    <span class="error-message" id="emailError"></span>
+                </div>
+
+                <label for="password">Password</label>
+                <div class="input-icon">
+                    <input type="password" id="password" name="password" required />
+                    <span class="error-message" id="passwordError"></span>
+                </div>
+
+                <label for="confirmPassword">Confirm Password</label>
+                <div class="input-icon">
+                    <input type="password" id="confirmPassword" name="confirmPassword" required />
+                    <span class="error-message" id="confirmPasswordError"></span>
+                </div>
+
+                <button type="submit" class="login-btn">Register</button>
+
+                <p class="register">Already have an account? <a href="../public/login">Login</a></p>
+                <p id="registerMessage"></p>
+            </form>
+        </div>
+    </div>
+    <script src="../public/js/register.js" defer></script>
+</body>
+</html>

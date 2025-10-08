@@ -1,0 +1,56 @@
+<div class="container">
+  <h1>User Manager</h1>
+
+  <div class="controls">
+    <input type="text" placeholder="Search users..." id="search" />
+
+    <div class="export-section">
+      <select id="exportFormat">
+        <option value="csv">CSV</option>
+        <option value="json">JSON</option>
+        <option value="pdf">PDF</option>
+      </select>
+      <button class="btn-export" onclick="exportUsers()">Export</button>
+    </div>
+  </div>
+
+  <table id="usersTable">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Data</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody id="usersTableBody">
+      <tr>
+        <td colspan="4" style="text-align: center; padding: 20px">
+          Loading users...
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- template users -->
+<template id="user-template">
+  {{#each users}}
+  <tr data-user-id="{{id}}">
+    <td>{{username}}</td>
+    <td>{{email}}</td>
+    <td>{{formatDate created_at}}</td>
+    <td>
+      <button class="btn-sm btn-danger delete-user-btn" data-id="{{id}}">
+        Delete
+      </button>
+    </td>
+  </tr>
+  {{else}}
+  <tr>
+    <td colspan="4" style="text-align: center; padding: 20px">
+      No users found
+    </td>
+  </tr>
+  {{/each}}
+</template>

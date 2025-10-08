@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login</title>
+    <link rel="stylesheet" href="../public/css/style.css" />
+  </head>
+
+  <body>
+    <div class="overlay">
+      <div class="login-box">
+        <button class="close-btn">&times;</button>
+        <h2>Login</h2>
+
+        <form id="loginForm">
+          <label for="email">Email</label>
+          <div class="input-icon">
+            <input type="email" id="email" name="email" required />
+          </div>
+
+          <label for="password">Password</label>
+          <div class="input-icon">
+            <input type="password" id="password" name="password" required />
+          </div>
+
+          <button type="submit" class="login-btn">Login</button>
+
+          <p class="register">
+            Don't have an account? <a href="../public/register">Register</a>
+          </p>
+          <p id="loginMessage"></p>
+        </form>
+      </div>
+    </div>
+    <script src="../public/js/login.js" defer></script>
+  </body>
+</html>

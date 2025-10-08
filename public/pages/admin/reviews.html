@@ -1,0 +1,74 @@
+<div class="container">
+  <h1>Reviews Manager</h1>
+
+  <div class="controls">
+    <input type="text" placeholder="Search reviews..." id="search" />
+
+    <select id="entityFilter">
+      <option value="">All entities</option>
+    </select>
+
+    <div class="export-section">
+      <select id="exportFormat">
+        <option value="csv">CSV</option>
+        <option value="json">JSON</option>
+        <option value="pdf">PDF</option>
+      </select>
+      <button class="btn-export" onclick="exportReviews()">Export</button>
+    </div>
+  </div>
+
+  <div id="reviewsContainer">
+    <table id="reviewsTable">
+      <thead>
+        <tr>
+          <th>User</th>
+          <th>Traits</th>
+          <th>Data</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody id="reviewsTableBody">
+        <tr>
+          <td colspan="4" style="text-align: center; padding: 20px">
+            Loading reviews...
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- template reviews -->
+<template id="reviews-template">
+  {{#each reviews}}
+  <tr data-review-id="{{id}}">
+    <td>{{user}}</td>
+    <td>
+      <div class="traits-container">
+        {{#each traits}}
+        <div class="trait-item">
+          <span class="trait-name">{{name}}:</span>
+          <span class="trait-rating">{{displayStars rating}}</span>
+          {{#if comment}}
+          <div class="trait-comment">{{comment}}</div>
+          {{/if}}
+        </div>
+        {{/each}}
+      </div>
+    </td>
+    <td>{{formatDate created_at}}</td>
+    <td>
+      <button class="btn-sm btn-danger delete-review-btn" data-id="{{id}}">
+        Delete
+      </button>
+    </td>
+  </tr>
+  {{else}}
+  <tr>
+    <td colspan="4" style="text-align: center; padding: 20px">
+      No reviews found
+    </td>
+  </tr>
+  {{/each}}
+</template>

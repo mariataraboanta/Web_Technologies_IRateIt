@@ -1,0 +1,93 @@
+<div class="container">
+  <div id="overview" class="tab-content active">
+    <div class="export-section">
+      <div class="export-header">
+        <h3 class="export-title">Export Date Dashboard</h3>
+        <div class="export-controls">
+          <select id="exportFormat" class="export-select">
+            <option value="csv">CSV</option>
+            <option value="json">JSON</option>
+            <option value="pdf">PDF</option>
+          </select>
+          <button class="btn-export" onclick="exportDashboardData()">Export</button>
+        </div>
+      </div>
+
+      <div class="export-info">
+        <strong>Datele exportate includ:</strong>
+        <ul>
+          <li>
+            <strong>Statistici generale</strong> - metrici generale ale platformei
+          </li>
+          <li>
+            <strong>Top entități</strong> - entitățile cu cele mai mari rating-uri
+          </li>
+          <li>
+            <strong>Entități slab evaluate</strong> - entitățile cu rating-uri
+            scăzute
+          </li>
+          <li>
+            <strong>Statistici categorii</strong> - informații despre fiecare
+            categorie
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div id="stats-grid" class="stats-grid"></div>
+    <div class="loading" id="stats-loading">Se încarcă statisticile...</div>
+
+    <div class="content-grid">
+      <div class="card">
+        <h3 class="card-title">Top Entități Apreciate</h3>
+        <ul id="top-entities" class="entity-list"></ul>
+      </div>
+      <div class="card">
+        <h3 class="card-title">Entități Slab Evaluate</h3>
+        <ul id="low-entities" class="entity-list"></ul>
+      </div>
+    </div>
+
+    <div id="category-grid" class="category-grid"></div>
+  </div>
+</div>
+
+<!-- templates -->
+<template id="stats-template">
+  {{#each stats}}
+    <div class="stat-card">
+      <div class="stat-number">{{value}}</div>
+      <div class="stat-label">{{label}}</div>
+    </div>
+  {{else}}
+    <p>Nu există statistici disponibile.</p>
+  {{/each}}
+</template>
+
+<template id="entity-list-template">
+  {{#each entities}}
+    <li class="entity-item">
+      <div class="entity-info">
+        <div class="entity-name">{{getName this}}</div>
+        <div class="entity-meta">
+          {{getCategory this}} • {{getTraitsInfo this}}
+        </div>
+      </div>
+      <div class="rating-value">{{getRating this}}</div>
+    </li>
+  {{else}}
+    <li style="color: #666;">{{emptyMessage}}</li>
+  {{/each}}
+</template>
+
+<template id="category-template">
+  {{#each categories}}
+    <div class="category-card">
+      <div class="category-name">{{name}}</div>
+      <div class="category-count">{{count}}</div>
+      <div class="category-label">entități • {{reviews}} evaluări</div>
+    </div>
+  {{else}}
+    <p style="color: #666;">Nu există categorii disponibile.</p>
+  {{/each}}
+</template>

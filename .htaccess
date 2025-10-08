@@ -1,0 +1,26 @@
+RewriteEngine On
+RewriteBase /IRI_Ballerina_Cappuccina
+
+# if it is not a real director
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+# Allow all HTTP methods
+RewriteCond %{REQUEST_METHOD} ^(GET|POST|PUT|DELETE|PATCH)$
+
+
+# if it is a request to /api/*
+RewriteRule ^api/.*$ public/index.php [L]
+
+RewriteCond %{REQUEST_URI} ^/IRI_Ballerina_Cappuccina/public/(login|register)$
+RewriteRule ^public/.*$ public/pages/%1.html [L]
+
+
+RewriteCond %{REQUEST_URI} ^/IRI_Ballerina_Cappuccina/public/(categories|entities|account|file)(/.*)?$
+
+
+RewriteRule ^public/.*$ public/pages/index.html [L]
+
+RewriteCond %{REQUEST_URI} ^/IRI_Ballerina_Cappuccina/public/admin/(dashboard|categories|entities|users|reviews)(/.*)?$
+
+RewriteRule ^public/.*$ public/pages/index.html [L]

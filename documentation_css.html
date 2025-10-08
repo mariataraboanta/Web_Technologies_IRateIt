@@ -1,0 +1,985 @@
+<!DOCTYPE html>
+<html lang="en" prefix="schema: http://schema.org/">
+  <head>
+    <meta charset="UTF-8" />
+    <title property="schema:headline">
+      I Rate It - Software Requirements Specification (SRS)
+    </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta property="schema:creator" content="Your Name or Team" />
+    <meta property="schema:dateCreated" content="2025-06-23" />
+    <meta
+      property="schema:about"
+      content="Software Requirements Specification document for Project I Rate It"
+    />
+    <style>
+      /* Base styles for scholarly document */
+      :root {
+        --primary-color: #2c3e50;
+        --secondary-color: #3498db;
+        --accent-color: #e74c3c;
+        --text-color: #333;
+        --light-bg: #f8f9fa;
+        --border-color: #ddd;
+      }
+      
+      body {
+        font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+        line-height: 1.6;
+        color: var(--text-color);
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: white;
+      }
+      
+      header, footer {
+        background-color: var(--light-bg);
+        padding: 20px;
+        border-radius: 5px;
+        margin-bottom: 20px;
+      }
+      
+      h1, h2, h3 {
+        color: var(--primary-color);
+        line-height: 1.2;
+      }
+      
+      h1 {
+        font-size: 2.2em;
+        text-align: center;
+        margin-bottom: 0.5em;
+        border-bottom: 2px solid var(--secondary-color);
+        padding-bottom: 0.3em;
+      }
+      
+      h2 {
+        font-size: 1.8em;
+        border-bottom: 1px solid var(--border-color);
+        padding-bottom: 0.2em;
+        margin-top: 1.5em;
+      }
+      
+      h3 {
+        font-size: 1.4em;
+        margin-top: 1.2em;
+      }
+      
+      p, ul, ol {
+        margin-bottom: 1em;
+      }
+      
+      a {
+        color: var(--secondary-color);
+        text-decoration: none;
+      }
+      
+      a:hover {
+        text-decoration: underline;
+        color: var(--accent-color);
+      }
+      
+      /* Figure and image styles */
+      figure {
+        margin: 2em auto;
+        text-align: center;
+      }
+      
+      figure img {
+        max-width: 100%;
+        height: auto;
+        border: 1px solid var(--border-color);
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      }
+      
+      figcaption {
+        font-style: italic;
+        color: #666;
+        margin-top: 0.5em;
+        font-size: 0.9em;
+      }
+      
+      /* Section and article formatting */
+      section {
+        margin-bottom: 2em;
+      }
+      
+      article {
+        margin-bottom: 1.5em;
+        padding-left: 1em;
+      }
+      
+      /* List styling */
+      ul, ol {
+        padding-left: 2em;
+      }
+      
+      li {
+        margin-bottom: 0.5em;
+      }
+      
+      /* Footer styling */
+      footer {
+        margin-top: 3em;
+        text-align: center;
+        font-size: 0.9em;
+        color: #666;
+        border-top: 1px solid var(--border-color);
+      }
+      
+      /* Responsive design */
+      @media (max-width: 768px) {
+        body {
+          padding: 10px;
+        }
+        
+        h1 {
+          font-size: 1.8em;
+        }
+        
+        h2 {
+          font-size: 1.5em;
+        }
+        
+        h3 {
+          font-size: 1.2em;
+        }
+        
+        figure {
+          margin: 1em auto;
+        }
+        
+        figure img {
+          display: block;
+          max-width: 100% !important;
+          margin: 0 auto 1em auto;
+        }
+      }
+      
+      @media (max-width: 480px) {
+        h1 {
+          font-size: 1.6em;
+        }
+        
+        body {
+          font-size: 0.95em;
+        }
+        
+        article {
+          padding-left: 0.5em;
+        }
+        
+        ul, ol {
+          padding-left: 1.5em;
+        }
+      }
+      
+      /* Print styles */
+      @media print {
+        body {
+          font-size: 11pt;
+          color: black;
+          background-color: white;
+        }
+        
+        a {
+          color: black;
+          text-decoration: underline;
+        }
+        
+        figure {
+          break-inside: avoid;
+        }
+        
+        h1, h2, h3 {
+          page-break-after: avoid;
+        }
+      }
+    </style>
+  </head>
+  <body typeof="schema:TechArticle">
+    <header>
+      <h1 property="schema:name">Software Requirements Specification</h1>
+      <p>
+        Published Date:
+        <time property="schema:datePublished" datetime="2025-06-23"
+          >June 24, 2025</time
+        >
+      </p>
+      <p>
+        Authors:
+        <span property="schema:author" typeof="schema:Person">
+          <span property="schema:name">Bechea Flavia-Ioana</span>,
+          <span property="schema:name">Tărăboanță Maria</span>
+        </span>
+      </p>
+    </header>
+
+    <main property="schema:articleBody">
+      <section id="video-presentation" typeof="schema:Section">
+        <h2 property="schema:headline">Video Presentation</h2>
+        <p>
+          Watch a demonstration video of the site's features here:
+          <a
+            href="https://www.youtube.com/watch?v=uK0M26glxa0"
+            target="_blank"
+            rel="noopener"
+          >
+            Video presentation of the features
+          </a>
+        </p>
+      </section>
+      <section id="introduction" typeof="schema:Section">
+        <h2 property="schema:headline">1. Introduction</h2>
+
+        <article id="purpose" typeof="schema:TechArticle">
+          <h3 property="schema:headline">1.1 Purpose</h3>
+          <p property="schema:description">
+            The purpose of this is to describe the software requirements for the
+            project "I Rate It". This document will outline the functional and
+            non-functional requirements, system features, and constraints of the
+            software. It serves as a guide for developers and testers to ensure
+            that the final product meets the intended goals and user needs.
+          </p>
+        </article>
+
+        <article id="document-conventions" typeof="schema:TechArticle">
+          <h3 property="schema:headline">1.2 Document Conventions</h3>
+          <p>
+            This document follows the template for software requirements
+            documentation according to the IEEE Software Requirements
+            Specification
+          </p>
+        </article>
+
+        <article id="intended-audience" typeof="schema:TechArticle">
+          <h3 property="schema:headline">
+            1.3 Intended Audience and Reading Suggestions
+          </h3>
+          <p>
+          </p>
+          <ul>
+            <li>
+              The intended audience for this document includes software
+              developers involved in the "I Rate It" project. It is recommended
+              that readers familiarize themselves with the overall project goals
+              and objectives before diving into specific sections of this
+              document.
+            </li>
+            <li>
+              For users, it is suggested to focus on the sections detailing user
+              interfaces and system features to understand how the software will
+              meet their needs.
+            </li>
+
+            <li>
+              For software developers, it is recommended to read the sections on
+              functional requirements, system features, and external interfaces
+              to grasp the technical specifications and implementation details.
+            </li>
+          </ul>
+        </article>
+
+        <article id="product-scope" typeof="schema:TechArticle">
+          <h3 property="schema:headline">1.4 Product Scope</h3>
+          <p>
+            The software aims to streamline the process of collecting,
+            aggregating, and analyzing user ratings and reviews for various
+            items, such as movies, books, or products. Its primary objectives
+            are to enhance user engagement, provide reliable and transparent
+            feedback, and support informed decision-making for both users and
+            businesses. By offering a centralized platform for ratings and
+            reviews, the system aligns with corporate goals of improving
+            customer satisfaction, fostering community interaction, and
+            leveraging user-generated data for business insights.
+          </p>
+        </article>
+
+        <article id="project-development" typeof="schema:TechArticle">
+          <h3 property="schema:headline">1.5 Project Development Process</h3>
+          <p>
+            The project was developed collaboratively using GitHub for version
+            control, with each team member working on feature branches to ensure
+            smooth integration and code review. The development started with the
+            implementation of the Categories page, followed by the Entities
+            page, and then the Reviews and Q&amp;A sections. Administrative
+            features, such as user and content management, were added in later
+            stages. This incremental approach allowed for continuous testing and
+            refinement of each module before moving on to the next, ensuring a
+            stable and well-structured application.
+          </p>
+        </article>
+
+        <article id="references" typeof="schema:TechArticle">
+          <h3 property="schema:headline">1.6 References</h3>
+          <ol>
+            <li property="schema:citation">
+              Dr. Buraga Sabin-Corneliu, Dr. Andrei Panu,
+              <a
+                href="https://edu.info.uaic.ro/web-technologies/"
+                target="_blank"
+                >Web Technologies</a
+              >, FII UAIC.
+            </li>
+            <li property="schema:citation">
+              Dr. Captarencu Oana,
+              <a
+                href="https://profs.info.uaic.ro/oana.captarencu/tw/"
+                target="_blank"
+                >Web Technologies Laboratory</a
+              >, FII UAIC.
+            </li>
+            <li property="schema:citation">
+              <a
+                href="https://github.com/rick4470/IEEE-SRS-Tempate#readme"
+                target="_blank"
+                >IEEE Software Requirements Specification</a
+              >, IEEE Xplore.
+            </li>
+          </ol>
+        </article>
+      </section>
+
+      <section id="overall-description" typeof="schema:Section">
+        <h2 property="schema:headline">2. Overall Description</h2>
+
+        <article id="product-perspective" typeof="schema:TechArticle">
+          <h3 property="schema:headline">2.1 Product Perspective</h3>
+          <p>
+            The "I Rate It" project is a software product designed to provide a
+            centralized platform for collecting, aggregating, and analyzing user
+            ratings. It is an original solution developed to address the need
+            for transparent and reliable feedback in digital marketplaces and
+            communities. The diagrams below illustrate the database structure
+            and the main components of the system (level 1 of the C4 diagram).
+          </p>
+          <figure>
+            <img
+              src="./documentation/db.png"
+              alt="Database structure of the I Rate It system"
+              style="max-width: 80%; height: auto"
+            />
+            <figcaption>
+              Figure 1: Database structure of the I Rate It system
+            </figcaption>
+          </figure>
+          <figure>
+            <img
+              src="./documentation/c4_1.png"
+              alt="Level 1 C4 diagram of the I Rate It system"
+              style="max-width: 80%; height: auto"
+            />
+            <figcaption>
+              Figure 2: Level 1 C4 diagram of the I Rate It system
+            </figcaption>
+          </figure>
+        </article>
+
+        <article id="product-functions" typeof="schema:TechArticle">
+          <h3 property="schema:headline">2.2 Product Functions</h3>
+          <ul>
+            <li>Allow users to register, log in, and manage their profiles.</li>
+            <li>Enable users to search for and browse items.</li>
+            <li>
+              Provide functionality for users to submit ratings and write
+              reviews for items.
+            </li>
+            <li>
+              Aggregate and display overall ratings and reviews for each item.
+            </li>
+            <li>Offer Questions and Answers section for each entity.</li>
+            <li>
+              Offer analytics and insights based on user-generated ratings and
+              reviews.
+            </li>
+            <li>Allow administrators to manage items and users.</li>
+          </ul>
+          <figure>
+            <img
+              src="./documentation/c4_2.png"
+              alt="Level 2 C4 diagram of the I Rate It system"
+              style="max-width: 80%; height: auto"
+            />
+            <figcaption>
+              Figure 3: Level 2 C4 diagram of the I Rate It system
+            </figcaption>
+          </figure>
+          <figure>
+            <img
+              src="./documentation/c4_3.png"
+              alt="Level 3 C4 diagram of the I Rate It system"
+              style="max-width: 80%; height: auto"
+            />
+            <figcaption>
+              Figure 4: Level 3 C4 diagram of the I Rate It system
+            </figcaption>
+          </figure>
+        </article>
+
+        <article id="user-classes" typeof="schema:TechArticle">
+          <h3 property="schema:headline">
+            2.3 User Classes and Characteristics
+          </h3>
+          <ul>
+            <li>
+              <strong>General Users:</strong>
+              <ul>
+                <li>Most frequent users of the system.</li>
+                <li>
+                  Can register, log in, search for items, submit ratings and
+                  reviews, and participate in Q&A sections.
+                </li>
+                <li>
+                  Varying levels of technical expertise; interface should be
+                  intuitive and user-friendly.
+                </li>
+                <li>Can access statistics.</li>
+              </ul>
+            </li>
+            <li>
+              <strong>Administrators:</strong>
+              <ul>
+                <li>Responsible for managing users and items.</li>
+                <li>
+                  Require advanced privileges, including access to management
+                  dashboards.
+                </li>
+                <li>Higher technical expertise expected.</li>
+                <li>
+                  Critical for maintaining system integrity and enforcing
+                  business rules.
+                </li>
+              </ul>
+            </li>
+            <li>
+              <strong>Guest Users:</strong>
+              <ul>
+                <li>
+                  Unregistered visitors who can browse the list of categories
+                  but cannot contribute content.
+                </li>
+                <li>No special privileges; lowest security level.</li>
+                <li>Potential to convert to registered users.</li>
+              </ul>
+            </li>
+          </ul>
+          <p>
+            The most important user classes are
+            <strong>General Users</strong> and <strong>Administrators</strong>,
+            as they are essential for the core functionality and maintenance of
+            the system.
+          </p>
+        </article>
+
+        <article id="operating-environment" typeof="schema:TechArticle">
+          <h3 property="schema:headline">2.4 Operating Environment</h3>
+          <p>
+            The software will operate in a local environment (localhost) without
+            a dedicated server. It is intended to run on standard personal
+            computers or laptops with the following characteristics:
+          </p>
+          <ul>
+            <li>
+              <strong>Hardware Platform:</strong> Any modern PC or laptop
+              capable of running a web browser and basic local server software
+              (e.g., XAMPP).
+            </li>
+            <li>
+              <strong>Operating System:</strong> Compatible with Windows 10/11,
+              macOS, and major Linux distributions.
+            </li>
+            <li>
+              <strong>Web Browser:</strong> Latest versions of Chrome, Firefox,
+              Edge, or Safari.
+            </li>
+            <li>
+              <strong>Software Components:</strong> Requires a local web server
+              stack such as XAMPP (Apache, PHP, MySQL) for running and testing
+              the application.
+            </li>
+          </ul>
+        </article>
+
+        <article id="constraints" typeof="schema:TechArticle">
+          <h3 property="schema:headline">
+            2.5 Design and Implementation Constraints
+          </h3>
+          <ul>
+            <li>No specific regulatory or corporate policies apply.</li>
+            <li>
+              Security and performance requirements are minimal due to the
+              local, non-production environment.
+            </li>
+          </ul>
+        </article>
+
+        <article id="user-documentation" typeof="schema:TechArticle">
+          <h3 property="schema:headline">2.6 User Documentation</h3>
+          <p>
+            This document is the only user documentation provided for the "I
+            Rate It" system.
+          </p>
+        </article>
+
+        <article id="assumptions-dependencies" typeof="schema:TechArticle">
+          <h3 property="schema:headline">2.7 Assumptions and Dependencies</h3>
+          <ul>
+            <li>
+              It is assumed that users will have access to a modern web browser
+              (Chrome, Firefox, Edge, or Safari) and a compatible operating
+              system (Windows, macOS, or Linux).
+            </li>
+            <li>
+              The application will be deployed and operated in a local
+              environment using XAMPP or a similar local server stack (Apache,
+              PHP, MySQL).
+            </li>
+            <li>
+              No third-party or commercial components or APIs are used. The only
+              external library used is
+              <a
+                href="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.min.js"
+                target="_blank"
+                rel="noopener"
+              >
+                Handlebars.js (via jsDelivr CDN) </a
+              >. This helps to render dynamic content in the application and to
+              protect against XSS attacks.
+            </li>
+
+            <li>
+              Security and performance requirements are minimal due to the
+              non-production, local deployment context.
+            </li>
+            <li>
+              If any of these assumptions change (e.g., deployment to a public
+              server or integration with external APIs), the requirements may
+              need to be revised.
+            </li>
+          </ul>
+        </article>
+      </section>
+
+      <section id="external-interface-requirements" typeof="schema:Section">
+        <h2 property="schema:headline">3. External Interface Requirements</h2>
+
+        <article id="user-interfaces" typeof="schema:TechArticle">
+          <p>
+            The design of the "I Rate It" application was chosen to prioritize
+            ease of use, visual clarity, and accessibility for all user types.
+            By adopting a clean and intuitive interface, users can quickly
+            navigate the platform, find relevant information, and interact with
+            features without confusion.
+          </p>
+          <h3 property="schema:headline">3.1 User Interfaces</h3>
+          <ul>
+            <li>
+              <strong>Categories Page:</strong> Displays the list of categories
+              (with links to Entities Pages for users that are logged in).
+              Includes login/register options and a form for submitting a new
+              category, which have to be approved by the administrator.
+              <figure>
+                <img
+                  src="./documentation/categories.png"
+                  alt="Categories Page"
+                  style="max-width: 80%; height: auto"
+                />
+                <figcaption>Figure 5: Categories Page</figcaption>
+              </figure>
+            </li>
+            <li>
+              <strong>Registration/Login Pages:</strong> Allows users to create
+              an account or log in. Includes form fields for username, email,
+              password, and validation messages.
+              <figure>
+                <img
+                  src="./documentation/registration.png"
+                  alt="Registration Page"
+                  style="max-width: 40%; height: auto"
+                />
+                <img
+                  src="./documentation/login.png"
+                  alt="Login Page"
+                  style="max-width: 40%; height: auto"
+                />
+                <figcaption>Figure 6: Registration/Login Pages</figcaption>
+              </figure>
+            </li>
+            <li>
+              <strong>User Profile Page:</strong> Shows user information,
+              profile picture, submitted ratings/reviews, options to edit
+              profile and the rankings in a RSS feed.
+              <figure>
+                <img
+                  src="./documentation/user-profile.png"
+                  alt="User Profile Page"
+                  style="max-width: 80%; height: auto"
+                />
+                <figcaption>Figure 7: User Profile Page</figcaption>
+              </figure>
+            </li>
+            <li>
+              <strong>Entities Page:</strong> Displays the list of entities with
+              summary information and average ratings (with links to Review
+              Pages for each entity). Includes a form for submitting a new
+              entity, which have to be approved by the administrator.
+              <figure>
+                <img
+                  src="./documentation/entities.png"
+                  alt="Entities Page"
+                  style="max-width: 80%; height: auto"
+                />
+                <figcaption>Figure 8: Entities Page</figcaption>
+              </figure>
+            </li>
+            <li>
+              <strong>Reviews Page:</strong> Displays user reviews, and a form
+              for submitting new ratings or reviews. Includes a Q&A section for
+              user questions and answers.
+              <figure>
+                <img
+                  src="./documentation/reviews.png"
+                  alt="Reviews Page"
+                  style="max-width: 40%; height: auto"
+                />
+                <img
+                  src="./documentation/qa.png"
+                  alt="Q&A Section"
+                  style="max-width: 40%; height: auto"
+                />
+                <figcaption>Figure 9: Reviews Page</figcaption>
+              </figure>
+            </li>
+            <li>
+              <strong>Admin Dashboard:</strong> Accessible to administrators,
+              provides statistics on user reviews and ratings.
+              <figure>
+                <img
+                  src="./documentation/dashboard1.png"
+                  alt="Reviews Page"
+                  style="max-width: 40%; height: auto"
+                />
+                <img
+                  src="./documentation/dashboard2.png"
+                  alt="Q&A Section"
+                  style="max-width: 40%; height: auto"
+                />
+                <figcaption>Figure 10: Dashboard Page</figcaption>
+              </figure>
+            </li>
+            <li>
+              <strong>Administration Pages:</strong> For managing users,
+              categories, entities and reviews. All offer filtering and
+              searching capabilities, as well as export (CSV, PDF, JSON). For
+              the categories management, the administrator can also import new
+              categories.
+              <figure>
+                <img
+                  src="./documentation/users_admin.png"
+                  alt="Reviews Page"
+                  style="max-width: 40%; height: auto"
+                />
+                <img
+                  src="./documentation/categories_admin.png"
+                  alt="Q&A Section"
+                  style="max-width: 40%; height: auto"
+                />
+              </figure>
+              <figure>
+                <img
+                  src="./documentation/entities_admin.png"
+                  alt="Reviews Page"
+                  style="max-width: 40%; height: auto"
+                />
+                <img
+                  src="./documentation/reviews_admin.png"
+                  alt="Q&A Section"
+                  style="max-width: 40%; height: auto"
+                />
+                <figcaption>Figure 11: Admin Pages</figcaption>
+              </figure>
+            </li>
+          </ul>
+        </article>
+
+        <article id="hardware-interfaces" typeof="schema:TechArticle">
+          <h3 property="schema:headline">3.2 Hardware Interfaces</h3>
+          <ul>
+            <li>Runs on standard PC or laptop hardware.</li>
+            <li>
+              Relies on user input devices (keyboard, mouse, touchscreen).
+            </li>
+          </ul>
+        </article>
+
+        <article id="software-interfaces" typeof="schema:TechArticle">
+          <h3 property="schema:headline">3.3 Software Interfaces</h3>
+          <ul>
+            <li>
+              <strong>HTML:</strong> Used for structuring all web pages and
+              defining the content layout of the application.
+            </li>
+            <li>
+              <strong>CSS:</strong> Provides styling, responsive design, and
+              visual consistency across all user interfaces.
+            </li>
+            <li>
+              <strong>JavaScript:</strong> Enables dynamic content updates, form
+              validation, and asynchronous communication with backend services
+              (AJAX).
+            </li>
+            <li>
+              <strong>PHP:</strong> Server-side scripting language used for
+              processing user requests, handling form submissions, and
+              interacting with the database.
+            </li>
+          </ul>
+        </article>
+
+        <article id="communications-interfaces" typeof="schema:TechArticle">
+          <h3 property="schema:headline">3.4 Communications Interfaces</h3>
+          <ul>
+            <li>
+              Communication between client and server is handled via HTTP/HTTPS
+              protocols, using standard RESTful requests.
+            </li>
+            <li>
+              AJAX (Asynchronous JavaScript and XML) is used for dynamic data
+              exchange between the frontend and backend without reloading the
+              page.
+            </li>
+            <li>
+              Data is typically transmitted in JSON format for interoperability
+              and ease of parsing.
+            </li>
+          </ul>
+        </article>
+      </section>
+
+      <section id="system-features" typeof="schema:Section">
+        <h2 property="schema:headline">4. System Features</h2>
+
+        <article id="feature1" typeof="schema:TechArticle">
+          <h3 property="schema:headline">
+            4.1 User Registration and Authentication
+          </h3>
+          <ul>
+            <li>
+              Users can register by providing a unique username, email, and
+              password.
+            </li>
+            <li>
+              Registration includes validation for unique usernames/emails and
+              password strength.
+            </li>
+            <li>Users can log in using their registered credentials.</li>
+            <li>
+              Authentication is required to access personalized features (e.g.,
+              submitting reviews, managing profiles).
+            </li>
+            <li>
+              Session management ensures users remain logged in during their
+              visit.
+            </li>
+            <li>Users can log out securely at any time.</li>
+            <li>
+              Administrators have separate authentication with elevated
+              privileges.
+            </li>
+          </ul>
+          <p>
+            This feature ensures secure access to the system, protects user
+            data, and enables personalized experiences for registered users and
+            administrators.
+          </p>
+        </article>
+
+        <article id="feature2" typeof="schema:TechArticle">
+          <h3 property="schema:headline">
+            4.2 Item Rating and Review Submission
+          </h3>
+          <ul>
+            <li>
+              Registered users can submit ratings (e.g., 1–5 stars) and write
+              textual reviews for items, as well as add photos.
+            </li>
+            <li>An user can submit multiple ratings/reviews per item.</li>
+            <li>Reviews are displayed publicly for each entity.</li>
+            <li>Administrators can remove inappropriate reviews.</li>
+            <li>
+              The system calculates and displays the average rating for each
+              item based on all user submissions.
+            </li>
+          </ul>
+          <p>
+            This feature enables users to share feedback, helps others make
+            informed decisions, and supports transparency and community
+            engagement.
+          </p>
+        </article>
+
+        <article id="feature3" typeof="schema:TechArticle">
+          <h3 property="schema:headline">
+            4.3 Adding New Categories and Entities
+          </h3>
+          <ul>
+            <li>
+              Registered users can propose new categories (e.g., genres, product
+              types) and new entities (e.g., specific movies, books, products)
+              through dedicated forms.
+            </li>
+            <li>
+              Submitted categories and entities require administrator approval
+              before becoming visible to all users.
+            </li>
+            <li>
+              Administrators can approve or reject proposed categories and
+              entities.
+            </li>
+            <li>
+              Approved categories and entities are immediately available for
+              browsing, rating, and review submission.
+            </li>
+          </ul>
+          <p>
+            This feature ensures the platform remains dynamic and user-driven,
+            allowing the content to grow and adapt to user interests while
+            maintaining quality and relevance through administrative oversight.
+          </p>
+        </article>
+
+        <article id="feature4" typeof="schema:TechArticle">
+          <h3 property="schema:headline">
+            4.4 Administration System: Dashboard and User Management
+          </h3>
+          <ul>
+            <li>
+              <strong>Admin Dashboard:</strong> Administrators have access to a
+              dedicated dashboard that provides an overview of system
+              statistics.
+            </li>
+            <li>
+              <strong>User Management:</strong> Administrators can view, search,
+              filter, and manage all registered users.
+            </li>
+            <li>
+              The system allows exporting user data in various formats (CSV,
+              PDF, JSON) for reporting or backup purposes.
+            </li>
+            <li>
+              Administrators can monitor user activity, review submission
+              history, and enforce community guidelines by removing users who
+              violate policies.
+            </li>
+          </ul>
+          <p>
+            These features ensure effective oversight, maintenance, and security
+            of the platform, enabling administrators to keep the system
+            organized, up-to-date, and compliant with operational standards.
+          </p>
+        </article>
+
+        <article id="feature5" typeof="schema:TechArticle">
+          <h3 property="schema:headline">4.5 RSS Feed for Rankings</h3>
+          <ul>
+            <li>
+              Users can subscribe to a RSS feed displaying the latest rankings
+              or reviews.
+            </li>
+            <li>Feeds are available for top and low rated entities.</li>
+          </ul>
+          <p>
+            RSS feeds enhance user engagement by providing updates outside the
+            main application.
+          </p>
+        </article>
+      </section>
+
+      <section id="nonfunctional-requirements" typeof="schema:Section">
+        <h2 property="schema:headline">5. Other Nonfunctional Requirements</h2>
+
+        <article id="performance-requirements" typeof="schema:TechArticle">
+          <h3 property="schema:headline">5.1 Performance Requirements</h3>
+          <p>
+            As a single page application (SPA), the system is designed to
+            provide fast and seamless user experiences by minimizing full page
+            reloads. Most content updates and navigation occur dynamically,
+            resulting in quicker load times and smoother transitions for users
+            operating in a local environment.
+          </p>
+        </article>
+
+        <article id="safety-requirements" typeof="schema:TechArticle">
+          <h3 property="schema:headline">5.2 Safety Requirements</h3>
+          <p>
+            No specific safety requirements are necessary for this project, as
+            it is intended for local use and does not handle critical or
+            hazardous operations.
+          </p>
+        </article>
+
+        <article id="security-requirements" typeof="schema:TechArticle">
+          <h3 property="schema:headline">5.3 Security Requirements</h3>
+          <ul>
+            <li>
+              <strong>Password Security:</strong> All user passwords are
+              securely encrypted (hashed) before being stored in the database to
+              prevent unauthorized access.
+            </li>
+            <li>
+              <strong>Input Sanitization:</strong> All user input is thoroughly
+              sanitized and validated before being stored in the database or
+              displayed to users, protecting against malicious data.
+            </li>
+            <li>
+              <strong>Protection Against XSS:</strong> Output is properly
+              escaped to prevent Cross-Site Scripting (XSS) attacks, ensuring
+              that user-supplied content cannot execute scripts in the browser.
+            </li>
+            <li>
+              <strong>SQL Injection Prevention:</strong> All database queries
+              use prepared statements or parameterized queries to prevent SQL
+              injection attacks.
+            </li>
+          </ul>
+        </article>
+
+        <article id="quality-attributes" typeof="schema:TechArticle">
+          <h3 property="schema:headline">5.4 Software Quality Attributes</h3>
+          <ul>
+            <li>
+              <strong>Usability:</strong> The system is designed to be easy to
+              use, with a simple and intuitive interface suitable for all user
+              types.
+            </li>
+            <li>
+              <strong>Simplicity:</strong> The project maintains a
+              straightforward structure, making it easy to understand, maintain,
+              and extend.
+            </li>
+            <li>
+              <strong>Reliability:</strong> Basic validation and error handling
+              ensure the system performs consistently in a local environment.
+            </li>
+            <li>
+              <strong>Maintainability:</strong> The codebase is organized and
+              documented to facilitate future updates or modifications.
+            </li>
+          </ul>
+        </article>
+      </section>
+    </main>
+
+    <footer>
+      <h2>References</h2>
+      <p>© 2025 IRI Ballerina Cappuccina</p>
+      <p>
+        Contact:
+        <a href="mailto:flavia.bechea@gmail.com">flavia.bechea@gmail.com</a>,
+        <a href="mailto:taraboantamaria04@gmail.com"
+          >taraboantamaria04@gmail.com</a
+        >
+      </p>
+    </footer>
+  </body>
+</html>
